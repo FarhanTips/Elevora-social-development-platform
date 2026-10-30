@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CalendarDays, Moon, Sun } from "lucide-react";
 import { Button } from "../ui/button";
+import UserInfo from "./userInfo";
 
 const subscribe = (callback: () => void) => {
     window.addEventListener("theme-change", callback);
@@ -43,8 +44,6 @@ const NavBar = () => {
                 </span>
                 <nav className="flex items-center gap-1 sm:gap-4">
 
-
-
                     <Button
                         variant="ghost"
                         size="icon"
@@ -54,11 +53,8 @@ const NavBar = () => {
                     >
                         {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
                     </Button>
-                    <Link href="/log-in">
-                        <Button className="bg-[#6638B5] text-white hover:bg-[#542D96] transition-colors cursor-pointer px-3 ">
-                            ➜] Login
-                        </Button>
-                    </Link>
+
+                    <UserInfo></UserInfo>
 
                 </nav>
             </div>
