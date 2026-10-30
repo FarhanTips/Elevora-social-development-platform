@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import { Josefin_Sans } from "next/font/google";
+import { Josefin_Sans, Geist } from "next/font/google";
 import "./globals.css";
+import NavBar from "@/components/shared/navBar";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
@@ -16,9 +20,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${josefinSans.className} h-full antialiased`}
+      suppressHydrationWarning
+      className={cn("h-full", "antialiased", josefinSans.className, "font-sans", geist.variable)}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem("theme")==="dark"){document.documentElement.classList.add("dark")}}catch(e){}`,
+          }}
+        />
+        <NavBar></NavBar>
+        {children}
+        </body>
     </html>
   );
 }
