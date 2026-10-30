@@ -54,10 +54,12 @@ const NavBar = () => {
                     >
                         {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
                     </Button>
+                    <Link href="/log-in">
+                        <Button className="bg-[#6638B5] text-white hover:bg-[#542D96] transition-colors cursor-pointer px-3 ">
+                            ➜] Login
+                        </Button>
+                    </Link>
 
-                    <Button className="bg-[#6638B5] text-white hover:bg-[#542D96] transition-colors cursor-pointer px-3 ">
-                       ➜] Login
-                    </Button>
                 </nav>
             </div>
         </header>
