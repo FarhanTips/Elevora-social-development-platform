@@ -3,8 +3,10 @@ import { Josefin_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/shared/navBar";
 import { cn } from "@/lib/utils";
+import { ToastContainer } from "react-toastify";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
@@ -31,7 +33,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
         <NavBar></NavBar>
         {children}
-        </body>
+        <ToastContainer position="top-center" autoClose={3000} />
+      </body>
     </html>
   );
 }
