@@ -28,7 +28,7 @@ export default function SignUpPage() {
         const { data, error } = await authClient.signUp.email({
             name: user.name,
             email: user.email,
-            image: user.profilePhoto || "https://www.svgrepo.com/show/452030/avatar-default.svg",
+            image: user.profilePhoto,
             password: user.password,
         });
 

@@ -13,6 +13,26 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      // Allow image URLs from any host (users can paste any URL)
+      {
+        hostname: "**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

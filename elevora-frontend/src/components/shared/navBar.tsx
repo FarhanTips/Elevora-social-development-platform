@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import logo from "@/assets/logo.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,13 +16,29 @@ const subscribe = (callback: () => void) => {
 const getSnapshot = () => document.documentElement.classList.contains("dark");
 const getServerSnapshot = () => false; // default theme is light
 
+const persistTheme = (dark: boolean) => {
+    localStorage.setItem("theme", dark ? "dark" : "light");
+    // Cookie lets the server render the right theme on the next load (no FOUC script)
+    document.cookie = `theme=${dark ? "dark" : "light"}; path=/; max-age=31536000; samesite=lax`;
+};
+
 const NavBar = () => {
     const dark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+    // One-time migration: users who picked dark before the cookie existed
+    // (their preference lives only in localStorage) get the class + cookie back.
+    useEffect(() => {
+        if (localStorage.getItem("theme") === "dark" && !document.documentElement.classList.contains("dark")) {
+            document.documentElement.classList.add("dark");
+            persistTheme(true);
+            window.dispatchEvent(new Event("theme-change"));
+        }
+    }, []);
 
     const toggleTheme = () => {
         const next = !dark;
         document.documentElement.classList.toggle("dark", next);
-        localStorage.setItem("theme", next ? "dark" : "light");
+        persistTheme(next);
         window.dispatchEvent(new Event("theme-change"));
     };
 
@@ -42,7 +58,7 @@ const NavBar = () => {
                         Upcoming Events
                     </Link>
                 </span>
-                <nav className="flex items-center gap-1 sm:gap-4 border">
+                <nav className="flex items-center gap-1 sm:gap-4">
 
                     <Button
                         variant="ghost"

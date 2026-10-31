@@ -11,7 +11,7 @@ const UserInfo = () => {
 
     const { data: session, isPending } = authClient.useSession();
     console.log("Nav session", session);
-    console.log("Nav session", session?.user.image);
+
 
     if (isPending) {
         return (
@@ -38,7 +38,10 @@ const UserInfo = () => {
                     <div className='flex items-center justify-center gap-4'>
                         <DropdownMenu>
                             <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="rounded-full"><Avatar>
-                                <AvatarImage src={session?.user?.image ?? undefined} alt="shadcn" />
+                                <AvatarImage
+                                    src={session?.user?.image?.startsWith("http") ? session.user.image : undefined}
+                                    alt={session.user.name}
+                                />
                                 <AvatarFallback>{session?.user?.name[0]}</AvatarFallback>
                             </Avatar></Button>} />
                             <DropdownMenuContent className="w-56">
@@ -51,8 +54,16 @@ const UserInfo = () => {
                                             {session.user?.email}
                                         </span>
                                     </div>
-
-                                    <DropdownMenuItem>Settings</DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Link href="/add-event" className="w-full">
+                                            Create Event
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Link href="/manage-events" className="w-full">
+                                            Manage Events
+                                        </Link>
+                                    </DropdownMenuItem>
                                 </DropdownMenuGroup>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuGroup>
@@ -61,7 +72,7 @@ const UserInfo = () => {
                             </DropdownMenuContent>
                         </DropdownMenu>
 
-                        <Button onClick={handleSignOut} variant={'destructive'} className=" cursor-pointer px-3 ">
+                        <Button onClick={handleSignOut} variant={'destructive'} className="bg-white border-gray-300 cursor-pointer px-3 ">
                             ]⬅ Log out
                         </Button>
                     </div>
