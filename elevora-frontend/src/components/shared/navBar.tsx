@@ -42,7 +42,7 @@ const NavBar = () => {
                         Upcoming Events
                     </Link>
                 </span>
-                <nav className="flex items-center gap-1 sm:gap-4">
+                <nav className="flex items-center gap-1 sm:gap-4 border">
 
                     <Button
                         variant="ghost"

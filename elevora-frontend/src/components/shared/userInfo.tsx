@@ -32,33 +32,39 @@ const UserInfo = () => {
         });
     }
     return (
-        <div className='flex items-center justify-center'>
+        <div>
             {
                 session?.user ?
-                    <DropdownMenu>
-                        <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="rounded-full"><Avatar>
-                            <AvatarImage src={session?.user?.image ?? undefined} alt="shadcn" />
-                            <AvatarFallback>{session?.user?.name[0]}</AvatarFallback>
-                        </Avatar></Button>} />
-                        <DropdownMenuContent className="w-56">
-                            <DropdownMenuGroup>
-                                <div className="px-1 pt-2 pb-1.5">
-                                    <span className="block text-sm font-medium">
-                                        {session.user?.name}
-                                    </span>
-                                    <span className="block text-xs text-muted-foreground">
-                                        {session.user?.email}
-                                    </span>
-                                </div>
+                    <div className='flex items-center justify-center gap-4'>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="rounded-full"><Avatar>
+                                <AvatarImage src={session?.user?.image ?? undefined} alt="shadcn" />
+                                <AvatarFallback>{session?.user?.name[0]}</AvatarFallback>
+                            </Avatar></Button>} />
+                            <DropdownMenuContent className="w-56">
+                                <DropdownMenuGroup>
+                                    <div className="px-1 pt-2 pb-1.5">
+                                        <span className="block text-sm font-medium">
+                                            {session.user?.name}
+                                        </span>
+                                        <span className="block text-xs text-muted-foreground">
+                                            {session.user?.email}
+                                        </span>
+                                    </div>
 
-                                <DropdownMenuItem>Settings</DropdownMenuItem>
-                            </DropdownMenuGroup>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuGroup>
-                                <DropdownMenuItem variant="destructive" onClick={handleSignOut}>]⬅ Log out</DropdownMenuItem>
-                            </DropdownMenuGroup>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                                    <DropdownMenuItem>Settings</DropdownMenuItem>
+                                </DropdownMenuGroup>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuGroup>
+                                    <DropdownMenuItem variant="destructive" onClick={handleSignOut}>]⬅ Log out</DropdownMenuItem>
+                                </DropdownMenuGroup>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+
+                        <Button onClick={handleSignOut} variant={'destructive'} className=" cursor-pointer px-3 ">
+                            ]⬅ Log out
+                        </Button>
+                    </div>
                     :
                     <Link href="/log-in">
                         <Button className="bg-[#6638B5] text-white hover:bg-[#542D96] transition-colors cursor-pointer px-3 ">
