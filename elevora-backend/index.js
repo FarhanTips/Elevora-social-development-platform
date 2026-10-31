@@ -1,12 +1,15 @@
 
-
 import express from'express';
 import 'dotenv/config'
-import { MongoClient } from 'mongodb';
-
+import { MongoClient, ObjectId } from 'mongodb';
+import cors from "cors";
 
 const app = express();
 const port = process.env.port || 5000;
+
+app.use(cors());
+app.use(express.json());     // Important: Put app.use(express.json()) before your routes so the middleware can parse the request body before those routes execute.
+
 
 
 const client = new MongoClient(process.env.MONGODB_URL);
@@ -21,10 +24,34 @@ export async function connectToMongoDB() {
   }
 }
 
-const  connectedClient = connectToMongoDB();
+const connectedClient = await connectToMongoDB();
+
+const db = connectedClient.db("elevora");
+const eventCollection = db.collection("events");
 
 app.get('/', (req, res) => {
   res.send('Working')
+})
+
+app.post("/add-event", async (req, res) => {
+  const newData = req.body;
+  console.log(newData);
+
+  const result = await eventCollection.insertOne(newData);
+  console.log(result);
+  res.send(result);
+})
+
+app.get('/events', async (req, res) => {
+  const result = await eventCollection.find().toArray();
+  res.send(result);
+})
+
+app.delete('/events/:id', async (req, res) => {
+  const id = req.params.id;
+  const result = await eventCollection.deleteOne({ _id: new ObjectId(id) });
+
+  res.send(result);
 })
 
 app.listen(port, () => {
