@@ -64,6 +64,11 @@ const UserInfo = () => {
                                             Manage Events
                                         </Link>
                                     </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Link href="/joined-events" className="w-full">
+                                            Joined Events
+                                        </Link>
+                                    </DropdownMenuItem>
                                 </DropdownMenuGroup>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuGroup>

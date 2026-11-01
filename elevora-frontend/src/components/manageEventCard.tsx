@@ -4,13 +4,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { EventType } from "@/lib/types/evenType";
-import {
-    CalendarDays,
-    MapPin,
-    Pencil,
-    Eye,
-    UserRound,
-} from "lucide-react";
+import {CalendarDays,MapPin,Eye,UserRound,} from "lucide-react";
 import DeleteDialog from "./deleteDialog";
 import EditEventDialog from "./editEventDialog";
 
@@ -76,7 +70,7 @@ const ManageEventCard = ({event}: ManageEventCardProps) => {
                 <div className="mt-5 grid grid-cols-3 gap-2 border-t border-gray-100 pt-4 dark:border-gray-800">
 
                     <Link
-                        href={`/upcoming-events/${event._id}`}
+                        href={`/upcoming/${event._id}`}
                         className="flex items-center justify-center gap-1.5 rounded-lg bg-gray-100 px-2 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200"
                     >
                         <Eye size={16} />

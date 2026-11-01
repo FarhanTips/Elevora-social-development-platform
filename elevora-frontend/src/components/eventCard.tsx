@@ -1,20 +1,16 @@
 "use client";
 
 import { EventType } from "@/lib/types/evenType";
-import {
-  CalendarDays,
-  MapPin,
-  ArrowUpRight,
-  UserRound,
-} from "lucide-react";
+import {CalendarDays,MapPin,ArrowUpRight,UserRound,} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 interface EventCardProps {
   event: EventType;
+  uniqueId: string
 }
 
-const EventCard = ({ event }: EventCardProps) => {
+const EventCard = ({ event, uniqueId }: EventCardProps) => {
   const formattedDate = new Date(event.date).toLocaleDateString(
     "en-US",
     {
@@ -76,7 +72,7 @@ const EventCard = ({ event }: EventCardProps) => {
           </span>
 
           <Link
-            href={`/upcoming-events/${event._id}`}
+            href={`/upcoming/${uniqueId}`}
             className="inline-flex items-center gap-2 rounded-lg bg-[#6638B5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#542D96]"
           >
             View Details
