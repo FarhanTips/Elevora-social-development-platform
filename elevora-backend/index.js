@@ -3,6 +3,7 @@ import express from'express';
 import 'dotenv/config'
 import { MongoClient, ObjectId } from 'mongodb';
 import cors from "cors";
+import { createRemoteJWKSet, jwtVerify } from 'jose';
 
 const app = express();
 const port = process.env.port || 5000;
@@ -29,6 +30,33 @@ const connectedClient = await connectToMongoDB();
 const db = connectedClient.db("elevora");
 const eventCollection = db.collection("events");
 const joinedCollection = db.collection("joined");
+
+
+const verifyToken = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  // console.log(authHeader);
+  if (!authHeader) {
+    return res.status(401).send({ msg: "Unauthorized" });
+  }
+  const token = authHeader.split(" ")[1];
+  // console.log(token);
+  if (!token) {
+    return res.status(401).send({ msg: "Unauthorized" });
+  }
+
+  const JWKS = createRemoteJWKSet(new URL(`${process.env.CLIENT_URL}/api/auth/jwks`));
+  
+
+  try {
+    const {payload} = await jwtVerify(token, JWKS);
+    // console.log(payload);
+    req.user = payload;
+    next();
+  } catch (error) {
+    return res.status(500).send({ msg: "Server Error" });
+  }
+  
+};
 
 app.get('/', (req, res) => {
   res.send('Working')
@@ -89,10 +117,12 @@ app.post("/joined", async (req, res) => {
     res.send(result);
 });
 
-app.get('/joined', async (req, res) => {
-  const result = await joinedCollection.find().toArray();
+app.get('/joined', verifyToken, async (req, res) => {
+  const result = await joinedCollection.find({joinerEmail: req.user.email}).toArray();
+  console.log(result);
   res.send(result);
 })
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
