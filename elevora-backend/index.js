@@ -28,6 +28,7 @@ const connectedClient = await connectToMongoDB();
 
 const db = connectedClient.db("elevora");
 const eventCollection = db.collection("events");
+const joinedCollection = db.collection("joined");
 
 app.get('/', (req, res) => {
   res.send('Working')
@@ -61,6 +62,35 @@ app.patch('/events/:id', async (req, res) => {
     { $set: req.body }
   );
 
+  res.send(result);
+})
+
+app.get('/events/:id', async (req, res) => {
+  const id = req.params.id;
+  const result = await eventCollection.findOne({ _id: new ObjectId(id) });
+  res.send(result);
+})
+
+app.post("/joined", async (req, res) => {
+    const newData = req.body;
+
+    const existingData = await joinedCollection.findOne({
+        joinerEmail: newData.joinerEmail,
+        title: newData.title,
+        date: newData.date
+    });
+
+    if (existingData) {
+        return res.send({ message: "Already added" });
+    }
+
+    const result = await joinedCollection.insertOne(newData);
+
+    res.send(result);
+});
+
+app.get('/joined', async (req, res) => {
+  const result = await joinedCollection.find().toArray();
   res.send(result);
 })
 
