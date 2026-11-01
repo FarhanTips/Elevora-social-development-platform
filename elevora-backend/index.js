@@ -54,6 +54,16 @@ app.delete('/events/:id', async (req, res) => {
   res.send(result);
 })
 
+app.patch('/events/:id', async (req, res) => {
+  const id = req.params.id;
+  const result = await eventCollection.updateOne(
+    { _id: new ObjectId(id) },
+    { $set: req.body }
+  );
+
+  res.send(result);
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
