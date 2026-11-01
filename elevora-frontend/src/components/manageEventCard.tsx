@@ -12,6 +12,7 @@ import {
     UserRound,
 } from "lucide-react";
 import DeleteDialog from "./deleteDialog";
+import EditEventDialog from "./editEventDialog";
 
 interface ManageEventCardProps {
     event: EventType;
@@ -81,14 +82,7 @@ const ManageEventCard = ({event}: ManageEventCardProps) => {
                         <Eye size={16} />
                         View
                     </Link>
-
-                    <Link
-                        href={`/manage-events/edit/${event._id}`}
-                        className="flex items-center justify-center gap-1.5 rounded-lg bg-[#6638B5]/10 px-2 py-2.5 text-sm font-semibold text-[#6638B5] transition hover:bg-[#6638B5]/20"
-                    >
-                        <Pencil size={16} />
-                        Edit
-                    </Link>
+                    <EditEventDialog event={event}></EditEventDialog>
 
                     <DeleteDialog event={event}></DeleteDialog>
 

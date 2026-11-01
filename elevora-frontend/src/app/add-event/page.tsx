@@ -116,7 +116,7 @@ const AddEventPage = () => {
                                 </div>
                             </div>
 
-                            {/* Price + Duration */}
+                            {/* Organizer Name + Location */}
                             <div className="grid gap-4 sm:grid-cols-2">
                                 <div className="grid gap-2">
                                     <Label htmlFor="orgName">Organizer Name</Label>

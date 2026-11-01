@@ -42,7 +42,7 @@ const DeleteDialog = ({ event }: DeleteDialogProps) => {
                     </AlertDialogMedia>
                     <AlertDialogTitle>Delete Destination?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This action cannot be undone. This will permanently delete the destination from our servers.
+                        This action cannot be undone. This will permanently delete the event from our servers.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
