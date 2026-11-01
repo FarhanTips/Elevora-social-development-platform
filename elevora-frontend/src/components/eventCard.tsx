@@ -7,10 +7,10 @@ import Link from "next/link";
 
 interface EventCardProps {
   event: EventType;
-  uniqueId: string
+  card: string
 }
 
-const EventCard = ({ event, uniqueId }: EventCardProps) => {
+const EventCard = ({ event, card }: EventCardProps) => {
   const formattedDate = new Date(event.date).toLocaleDateString(
     "en-US",
     {
@@ -72,7 +72,7 @@ const EventCard = ({ event, uniqueId }: EventCardProps) => {
           </span>
 
           <Link
-            href={`/upcoming/${uniqueId}`}
+            href={`/upcoming/${card}`}
             className="inline-flex items-center gap-2 rounded-lg bg-[#6638B5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#542D96]"
           >
             View Details

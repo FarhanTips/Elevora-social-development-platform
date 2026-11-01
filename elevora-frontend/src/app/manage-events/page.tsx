@@ -2,29 +2,24 @@ import ManageEventCard from "@/components/manageEventCard";
 import { auth } from "@/lib/auth";
 import { EventType } from "@/lib/types/evenType";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 
 
 const ManageEventsPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers()
     });
-    // Not logged in → go to login instead of crashing the page
-    if (!session) redirect("/log-in");
 
-    // Backend unreachable / not returning JSON must not break the page
-    let allEvents: EventType[] = [];
+    let allMyEvents: EventType[] = [];
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`,
-            { cache: "no-store" }
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`, {cache: "no-store"}
         );
-        if (res.ok) allEvents = await res.json();
+        if (res.ok) allMyEvents = await res.json();
     } catch {
-        allEvents = [];
+        allMyEvents = [];
     }
 
-    const myEvents = allEvents
-        .filter((event) => event.userEmail === session.user.email)
+    const myEvents = allMyEvents
+        .filter((event) => event.userEmail === session?.user.email)
         .sort(
             (a, b) =>
                 new Date(a.date).getTime() - new Date(b.date).getTime()
