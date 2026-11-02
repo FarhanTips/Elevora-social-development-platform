@@ -37,7 +37,7 @@ const DeleteDialog = ({ event }: DeleteDialogProps) => {
             router.refresh();   // Use replace instead of push so the user can't go back to the deleted destination page
         }
         else{
-            toast.error(data.message);
+            toast.error(data.msg);
         }
     }
     return (

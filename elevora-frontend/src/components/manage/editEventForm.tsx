@@ -60,7 +60,7 @@ const EditEventForm = ({ event }: EditEventFormProps) => {
         }
 
         else {
-            toast.error(data.message);
+            toast.error(data.msg);
         }
     }
 

@@ -51,8 +51,8 @@ const JoinButton = ({event}: JoinButtonProps) => {
         if (res.ok && data.acknowledged) {
             toast.success(`Joined ${joinedData.title} successfully!`);
         }
-        if(res.ok && data.message){
-            toast.warn(data.message);
+        else{
+            toast.warn(data.msg);
         }
 
 

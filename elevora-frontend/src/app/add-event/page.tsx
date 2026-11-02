@@ -11,6 +11,7 @@ import { SyntheticEvent, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import getTokenFromClientComponent from "@/lib/token/getTokenFromClientComponent";
 
 
 
@@ -36,18 +37,19 @@ const AddEventPage = () => {
             newEvent[key] = value.toString();
         });
 
-
         if (!newEvent.imageUrl) {
             newEvent.imageUrl = "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6";
         }
         newEvent.userEmail = session?.user.email as string;
         console.log("Data from form", newEvent);
 
+        const token = await getTokenFromClientComponent();
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/add-event`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                authorization: `Bearer ${token}`
             },
             body: JSON.stringify(newEvent),
         })
