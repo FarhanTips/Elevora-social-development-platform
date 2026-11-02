@@ -40,7 +40,7 @@ const verifyToken = async (req, res, next) => {
   }
   const token = authHeader.split(" ")[1];
   // console.log(token);
-  if (!token) {
+  if (!token || token === "undefined") {
     return res.status(401).send({ msg: "Unauthorized" });
   }
 
@@ -62,7 +62,7 @@ app.get('/', (req, res) => {
   res.send('Working')
 })
 
-app.post("/add-event", async (req, res) => {
+app.post("/add-event", verifyToken, async (req, res) => {
   const newData = req.body;
   console.log(newData);
 
@@ -77,8 +77,7 @@ app.get('/events', async (req, res) => {
 })
 
 app.get('/manage-events', verifyToken, async (req, res) => {
-  // const result = await eventCollection.find({userEmail: req.user.email}).toArray();
-  const result = await eventCollection.find().toArray();
+  const result = await eventCollection.find({userEmail: req.user.email}).toArray();
   res.send(result);
 })
 
@@ -87,7 +86,7 @@ app.delete('/manage-events/:id', verifyToken, async (req, res) => {
   const result = await eventCollection.deleteOne({ _id: new ObjectId(id), userEmail: req.user.email });
   // console.log(result);
   if (result.deletedCount === 0) {
-    return res.status(403).send({message: "Unauthorized to delete!"});
+    return res.status(403).send({ msg: "Unauthorized to delete!" });
   }
   const result2 = await joinedCollection.deleteMany({ eventId: id, userEmail: req.user.email });
 
@@ -102,7 +101,7 @@ app.patch('/manage-events/:id', verifyToken, async (req, res) => {
   );
   // console.log(result);
   if (result.matchedCount === 0) {
-    return res.status(403).send({ message: "Unauthorized to edit this event!" });
+    return res.status(403).send({ msg: "Unauthorized to edit this event!" });
   }
 
   res.send(result);
@@ -124,7 +123,7 @@ app.post("/joined", verifyToken, async (req, res) => {
   });
 
   if (existingData) {
-    return res.send({ message: "Already Joined!" });
+    return res.send({ msg: "Already Joined!" });
   }
 
   const result = await joinedCollection.insertOne(newData);
