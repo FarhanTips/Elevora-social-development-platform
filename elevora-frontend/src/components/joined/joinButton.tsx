@@ -25,7 +25,7 @@ const JoinButton = ({event}: JoinButtonProps) => {
     const { _id, ...eventData } = event;
     const handleJoinButton = async () => {
         const token = await getTokenFromClientComponent();
-        
+
         const joinedData = {
             joinerEmail: session?.user.email,
             eventId: _id,
@@ -52,7 +52,7 @@ const JoinButton = ({event}: JoinButtonProps) => {
             toast.success(`Joined ${joinedData.title} successfully!`);
         }
         if(res.ok && data.message){
-            toast.warn(`Already Joined!!`);
+            toast.warn(data.message);
         }
 
 
