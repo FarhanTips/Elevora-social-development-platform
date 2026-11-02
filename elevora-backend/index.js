@@ -84,7 +84,12 @@ app.get('/manage-events', verifyToken, async (req, res) => {
 
 app.delete('/manage-events/:id', verifyToken, async (req, res) => {
   const id = req.params.id;
-  const result = await eventCollection.deleteOne({ _id: new ObjectId(id) });
+  const result = await eventCollection.deleteOne({ _id: new ObjectId(id), userEmail: req.user.email });
+  // console.log(result);
+  if (result.deletedCount === 0) {
+    return res.status(403).send({message: "Unauthorized to delete!"});
+  }
+  const result2 = await joinedCollection.deleteMany({ eventId: id, userEmail: req.user.email });
 
   res.send(result);
 })
@@ -95,9 +100,9 @@ app.patch('/manage-events/:id', verifyToken, async (req, res) => {
     { _id: new ObjectId(id), userEmail: req.user.email },
     { $set: req.body }
   );
-  console.log(result);
+  // console.log(result);
   if (result.matchedCount === 0) {
-    return res.status(403).send({message: "Unauthorized to edit this event!"});
+    return res.status(403).send({ message: "Unauthorized to edit this event!" });
   }
 
   res.send(result);
