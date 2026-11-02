@@ -1,5 +1,6 @@
 "use client"
 import { authClient } from '@/lib/auth-client';
+import getTokenFromClientComponent from '@/lib/token/getTokenFromClientComponent';
 import { EventType } from '@/lib/types/evenType';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
@@ -23,6 +24,8 @@ const JoinButton = ({event}: JoinButtonProps) => {
 
     const { _id, ...eventData } = event;
     const handleJoinButton = async () => {
+        const token = await getTokenFromClientComponent();
+        
         const joinedData = {
             joinerEmail: session?.user.email,
             eventId: _id,
@@ -36,6 +39,7 @@ const JoinButton = ({event}: JoinButtonProps) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                authorization: `Bearer ${token}`
             },
             body: JSON.stringify(joinedData),
         });
