@@ -1,29 +1,23 @@
-import ManageEventCard from "@/components/manageEventCard";
-import { auth } from "@/lib/auth";
+import ManageEventCard from "@/components/manage/manageEventCard";
+import getTokenFromServerComponent from "@/lib/token/getTokenFromServerComponent";
 import { EventType } from "@/lib/types/evenType";
-import { headers } from "next/headers";
 
 
 const ManageEventsPage = async () => {
-    const session = await auth.api.getSession({
-        headers: await headers()
+    const token = await getTokenFromServerComponent();
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/manage-events`, {
+        cache: "no-store",
+        headers: {
+            authorization: `Bearer ${token}`
+        }
     });
+    const myEvents: EventType[] = await res.json();
 
-    let allMyEvents: EventType[] = [];
-    try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`, {cache: "no-store"}
-        );
-        if (res.ok) allMyEvents = await res.json();
-    } catch {
-        allMyEvents = [];
-    }
 
-    const myEvents = allMyEvents
-        .filter((event) => event.userEmail === session?.user.email)
-        .sort(
-            (a, b) =>
-                new Date(a.date).getTime() - new Date(b.date).getTime()
-        );
+    const sortedMyEvents = myEvents.sort((a, b) =>
+        new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
 
     return (
         <section className="mx-auto max-w-7xl px-4 py-12">
@@ -36,7 +30,7 @@ const ManageEventsPage = async () => {
                 </p>
             </div>
 
-            {myEvents.length === 0 ? (
+            {sortedMyEvents.length === 0 ? (
                 <div className="rounded-2xl border border-dashed p-12 text-center">
                     <h2 className="text-xl font-semibold">No Events Found</h2>
                     <p className="mt-2 text-gray-500">
@@ -45,7 +39,7 @@ const ManageEventsPage = async () => {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {myEvents.map((event) => (
+                    {sortedMyEvents.map((event) => (
                         <ManageEventCard
                             key={event._id}
                             event={event}

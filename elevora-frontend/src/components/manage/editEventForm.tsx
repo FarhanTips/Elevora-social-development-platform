@@ -9,7 +9,7 @@ import { SyntheticEvent, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { EventType } from "@/lib/types/evenType";
-import { DialogClose, DialogFooter } from "./ui/dialog";
+import { DialogClose, DialogFooter } from "../ui/dialog";
 
 interface EditEventFormProps {
     event: EventType
