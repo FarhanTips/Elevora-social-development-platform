@@ -1,5 +1,5 @@
 
-import express from'express';
+import express from 'express';
 import 'dotenv/config'
 import { MongoClient, ObjectId } from 'mongodb';
 import cors from "cors";
@@ -45,17 +45,17 @@ const verifyToken = async (req, res, next) => {
   }
 
   const JWKS = createRemoteJWKSet(new URL(`${process.env.CLIENT_URL}/api/auth/jwks`));
-  
+
 
   try {
-    const {payload} = await jwtVerify(token, JWKS);
+    const { payload } = await jwtVerify(token, JWKS);
     // console.log(payload);
     req.user = payload;
     next();
   } catch (error) {
     return res.status(500).send({ msg: "Server Error" });
   }
-  
+
 };
 
 app.get('/', (req, res) => {
@@ -77,23 +77,28 @@ app.get('/events', async (req, res) => {
 })
 
 app.get('/manage-events', verifyToken, async (req, res) => {
-  const result = await eventCollection.find({userEmail: req.user.email}).toArray();
+  // const result = await eventCollection.find({userEmail: req.user.email}).toArray();
+  const result = await eventCollection.find().toArray();
   res.send(result);
 })
 
-app.delete('/events/:id', async (req, res) => {
+app.delete('/manage-events/:id', verifyToken, async (req, res) => {
   const id = req.params.id;
   const result = await eventCollection.deleteOne({ _id: new ObjectId(id) });
 
   res.send(result);
 })
 
-app.patch('/events/:id', async (req, res) => {
+app.patch('/manage-events/:id', verifyToken, async (req, res) => {
   const id = req.params.id;
   const result = await eventCollection.updateOne(
-    { _id: new ObjectId(id) },
+    { _id: new ObjectId(id), userEmail: req.user.email },
     { $set: req.body }
   );
+  console.log(result);
+  if (result.matchedCount === 0) {
+    return res.status(403).send({message: "Unauthorized to edit this event!"});
+  }
 
   res.send(result);
 })
@@ -105,25 +110,25 @@ app.get('/events/:id', async (req, res) => {
 })
 
 app.post("/joined", verifyToken, async (req, res) => {
-    const newData = req.body;
+  const newData = req.body;
 
-    const existingData = await joinedCollection.findOne({
-        joinerEmail: newData.joinerEmail,
-        title: newData.title,
-        date: newData.date
-    });
+  const existingData = await joinedCollection.findOne({
+    joinerEmail: newData.joinerEmail,
+    title: newData.title,
+    date: newData.date
+  });
 
-    if (existingData) {
-        return res.send({ message: "Already added" });
-    }
+  if (existingData) {
+    return res.send({ message: "Already Joined!" });
+  }
 
-    const result = await joinedCollection.insertOne(newData);
+  const result = await joinedCollection.insertOne(newData);
 
-    res.send(result);
+  res.send(result);
 });
 
 app.get('/joined', verifyToken, async (req, res) => {
-  const result = await joinedCollection.find({joinerEmail: req.user.email}).toArray();
+  const result = await joinedCollection.find({ joinerEmail: req.user.email }).toArray();
   console.log(result);
   res.send(result);
 })
