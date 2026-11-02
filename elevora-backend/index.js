@@ -76,6 +76,11 @@ app.get('/events', async (req, res) => {
   res.send(result);
 })
 
+app.get('/manage-events', verifyToken, async (req, res) => {
+  const result = await eventCollection.find({userEmail: req.user.email}).toArray();
+  res.send(result);
+})
+
 app.delete('/events/:id', async (req, res) => {
   const id = req.params.id;
   const result = await eventCollection.deleteOne({ _id: new ObjectId(id) });
