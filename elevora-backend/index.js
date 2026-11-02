@@ -99,7 +99,7 @@ app.get('/events/:id', async (req, res) => {
   res.send(result);
 })
 
-app.post("/joined", async (req, res) => {
+app.post("/joined", verifyToken, async (req, res) => {
     const newData = req.body;
 
     const existingData = await joinedCollection.findOne({
