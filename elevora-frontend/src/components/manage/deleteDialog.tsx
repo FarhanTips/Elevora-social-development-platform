@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import {useRouter} from "next/navigation";
 import { toast } from "react-toastify";
 import { EventType } from "@/lib/types/evenType";
+import getTokenFromClientComponent from "@/lib/token/getTokenFromClientComponent";
 
 
 interface DeleteDialogProps {
@@ -18,16 +19,25 @@ const DeleteDialog = ({ event }: DeleteDialogProps) => {
 
     const handleDeleteButton = async () => {
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${event._id}`, {
+        const token = await getTokenFromClientComponent();
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/manage-events/${event._id}`, {
             method: "DELETE",
+            headers:{
+                authorization: `Bearer ${token}`
+            }
         });
 
         const data = await res.json();
+        console.log("res", res);
         console.log("After Delete", data);
 
         if (res.ok && data.acknowledged) {
             toast.warn("Delete Successfull!");
             router.refresh();   // Use replace instead of push so the user can't go back to the deleted destination page
+        }
+        else{
+            toast.error(data.message);
         }
     }
     return (
