@@ -76,13 +76,23 @@ const AddEventPage = () => {
     }
 
     return (
-        <main className="flex-1 px-4 py-12">
-            <div className="mx-auto w-full max-w-xl">
-                <h1 className="mb-8 font-heading text-4xl font-light">
-                    Add New Event
-                </h1>
+        <main className="relative flex-1 overflow-hidden bg-linear-to-tl from-indigo-50 via-white to-violet-100 px-4 py-12 dark:from-slate-950 dark:via-indigo-950 dark:to-violet-950 sm:py-16">
+            {/* Background Decorations */}
+            <div className="pointer-events-none absolute -left-24 top-20 size-72 rounded-full bg-indigo-300/20 blur-3xl dark:bg-indigo-500/10" />
+            <div className="pointer-events-none absolute -right-24 bottom-10 size-80 rounded-full bg-violet-300/25 blur-3xl dark:bg-violet-500/10" />
 
-                <Card className="shadow-md">
+            <div className="relative mx-auto w-full max-w-xl">
+                {/* Heading */}
+                <div className="mb-8 text-center sm:mb-10">
+                    <h1 className="font-heading text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                        Add New Event
+                    </h1>
+                    <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 sm:text-base">
+                        Share your event and bring people together.
+                    </p>
+                </div>
+
+                <Card className="overflow-hidden rounded-3xl border border-violet-200/80 bg-linear-to-br from-white via-violet-50 to-indigo-100 shadow-[0_24px_60px_rgba(67,56,202,0.14)] dark:border-indigo-700/50 dark:bg-linear-to-br dark:from-slate-800 dark:via-indigo-950 dark:to-slate-900 dark:shadow-[0_24px_60px_rgba(0,0,0,0.4)]">
                     <CardContent>
                         <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
 
@@ -176,12 +186,25 @@ const AddEventPage = () => {
                             </div>
 
                             {/* Buttons */}
-                            <div className="flex justify-end gap-2 pt-2">
-                                <Button onClick={handleCancel} type="button" variant="destructive" size="lg" >
-                                    <Trash2Icon /> Cancel
+                            <div className="flex flex-col-reverse gap-3 border-t border-indigo-100 pt-5 dark:border-indigo-900/60 sm:flex-row sm:justify-end">
+                                <Button
+                                    onClick={handleCancel}
+                                    type="button"
+                                    variant="destructive"
+                                    size="lg"
+                                    className="w-full rounded-xl transition-all duration-300 hover:shadow-lg active:scale-95 sm:w-auto"
+                                >
+                                    <Trash2Icon />
+                                    Cancel
                                 </Button>
-                                <Button type="submit" size="lg">
-                                    <SaveIcon /> Add Travel Package
+
+                                <Button
+                                    type="submit"
+                                    size="lg"
+                                    className="w-full rounded-xl bg-linear-to-r from-indigo-600 to-violet-600 font-bold text-white shadow-lg shadow-indigo-500/20 transition-all duration-300 hover:from-indigo-700 hover:to-violet-700 hover:shadow-xl hover:shadow-indigo-500/30 active:scale-95 dark:from-indigo-500 dark:to-violet-500 dark:hover:from-indigo-400 dark:hover:to-violet-400 sm:w-auto"
+                                >
+                                    <SaveIcon />
+                                    Add Event
                                 </Button>
                             </div>
                         </form>

@@ -40,26 +40,29 @@ const Banner = () => {
 
                 {/* CTA buttons */}
                 <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                    <Link href="/upcoming">
+                        <Button
+                            size="lg"
+                            className="h-12 w-full rounded-4xl bg-indigo-600 px-8 text-base font-semibold text-white shadow-lg shadow-indigo-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-700 sm:w-auto"
+                        >
+                            <span className="flex items-center gap-2">
+                                Explore Events
+                                <ArrowRight className="size-4" />
+                            </span>
+                        </Button>
+                    </Link>
+                    
+                    <Link href="/add-event">
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="h-12 w-full rounded-4xl border-indigo-200 dark:border-indigo-400/40 bg-white/70 dark:bg-slate-900/50 px-8 text-base font-semibold text-indigo-700 dark:text-indigo-300 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 dark:hover:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 hover:text-indigo-800 dark:hover:text-indigo-200 sm:w-auto"
+                        >
 
-                    <Button
-                        size="lg"
-                        className="h-12 w-full rounded-4xl bg-indigo-600 px-8 text-base font-semibold text-white shadow-lg shadow-indigo-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-700 sm:w-auto"
-                    >
-                        <Link href="/upcoming" className="flex items-center gap-2">
-                            Explore Events
-                            <ArrowRight className="size-4" />
-                        </Link>
-                    </Button>
-
-                    <Button
-                        size="lg"
-                        variant="outline"
-                        className="h-12 w-full rounded-4xl border-indigo-200 dark:border-indigo-400/40 bg-white/70 dark:bg-slate-900/50 px-8 text-base font-semibold text-indigo-700 dark:text-indigo-300 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 dark:hover:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 hover:text-indigo-800 dark:hover:text-indigo-200 sm:w-auto"
-                    >
-                        <Link href="/add-event">
                             Create an Event
-                        </Link>
-                    </Button>
+
+                        </Button>
+                    </Link>
 
                 </div>
 
