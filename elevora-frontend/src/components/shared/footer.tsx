@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo.png";
-import {ArrowUpRight,Mail,MapPin,Phone,Heart,} from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Phone, Heart, } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
@@ -13,10 +13,10 @@ const Footer = () => {
             <div className="relative z-10 mx-auto w-11/12 max-w-7xl">
 
                 {/* Main Footer */}
-                <div className="grid grid-cols-1 gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:py-20">
+                <div className="grid grid-cols-1 gap-12 py-16 sm:grid-cols-[auto_auto] sm:justify-between lg:grid-cols-4 lg:gap-10 lg:py-20">
 
                     {/* Brand */}
-                    <div className="sm:col-span-2 lg:col-span-1">
+                    <div>
                         <Link href="/" className="mb-5 inline-flex items-center gap-2">
                             <Image
                                 src={logo}
