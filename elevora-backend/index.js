@@ -76,6 +76,15 @@ app.get('/events', async (req, res) => {
   res.send(result);
 })
 
+app.get('/recent-events', async (req, res) => {
+  const today = new Date().toISOString().split("T")[0];
+
+  const result = await eventCollection.find({ date: { $gte: today } })
+    .sort({ date: 1 }).limit(6).toArray();
+
+  res.send(result);
+});
+
 app.get('/manage-events', verifyToken, async (req, res) => {
   const result = await eventCollection.find({userEmail: req.user.email}).toArray();
   res.send(result);
