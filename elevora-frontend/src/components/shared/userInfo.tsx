@@ -102,17 +102,17 @@ const UserInfo = () => {
                                         onClick={handleSignOut}
                                         className="cursor-pointer rounded-lg"
                                     >
-                                        ]⬅ Log out
+                                        ↩ Log out
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
-
+                        
                         <Button
                             onClick={handleSignOut}
                             variant="destructive"
                         >
-                            ]⬅ <span className="inline">Log out</span>
+                            ↩ <span className="inline">Log out</span>
                         </Button>
 
                     </div>
