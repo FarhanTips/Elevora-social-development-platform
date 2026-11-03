@@ -6,8 +6,8 @@ const RecentUpcomingEvents = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recent-events`);
     const sixEvents: EventType[] = await res.json();
     return (
-        <div className='my-12 md:my-16'>
-            <div className="text-center ">
+        <div className='my-12 md:my-16 py-20'>
+            <div className="text-center px-10">
                 <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
                     Upcoming Initiatives
                 </p>

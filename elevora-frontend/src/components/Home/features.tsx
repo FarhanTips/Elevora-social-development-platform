@@ -33,7 +33,7 @@ const features = [
 
 const PlatformFeatures = () => {
     return (
-        <section className="relative isolate overflow-hidden sm:px-10 sm:py-24 lg:px-16">
+        <section className="relative isolate overflow-hidden px-10 py-20 sm:px-10 sm:py-24 lg:px-16">
 
             <div className="mx-auto max-w-7xl">
 
