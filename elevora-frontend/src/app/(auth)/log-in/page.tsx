@@ -84,7 +84,9 @@ export default function LogInPage() {
                             </Field>
 
                             <FieldSeparator className="*:data-[slot=field-separator-content]:bg-transparent">
-                                Or continue with
+                                <span className="rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1 font-semibold text-indigo-600 dark:border-indigo-800 dark:bg-slate-800 dark:text-indigo-300 text-xs sm:text-sm">
+                                    Or continue with
+                                </span>
                             </FieldSeparator>
 
                             <Field>
