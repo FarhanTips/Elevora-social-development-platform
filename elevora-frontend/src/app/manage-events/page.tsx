@@ -20,34 +20,36 @@ const ManageEventsPage = async () => {
     );
 
     return (
-        <section className="mx-auto max-w-7xl px-4 py-12">
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                    Manage Your Events
-                </h1>
-                <p className="mt-2 text-gray-500">
-                    View, update and manage the events you created.
-                </p>
-            </div>
-
-            {sortedMyEvents.length === 0 ? (
-                <div className="rounded-2xl border border-dashed p-12 text-center">
-                    <h2 className="text-xl font-semibold">No Events Found</h2>
+        <div className="bg-linear-to-tl from-indigo-50 via-white to-violet-100 dark:from-slate-950 dark:via-indigo-950 dark:to-violet-950">
+            <section className="mx-auto max-w-7xl px-4 py-12">
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                        Manage Your Events
+                    </h1>
                     <p className="mt-2 text-gray-500">
-                        You haven&rsquo;t created any events yet.
+                        View, update and manage the events you created.
                     </p>
                 </div>
-            ) : (
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {sortedMyEvents.map((event) => (
-                        <ManageEventCard
-                            key={event._id}
-                            event={event}
-                        />
-                    ))}
-                </div>
-            )}
-        </section>
+
+                {sortedMyEvents.length === 0 ? (
+                    <div className="rounded-2xl border border-dashed p-12 text-center">
+                        <h2 className="text-xl font-semibold">No Events Found</h2>
+                        <p className="mt-2 text-gray-500">
+                            You haven&rsquo;t created any events yet.
+                        </p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {sortedMyEvents.map((event) => (
+                            <ManageEventCard
+                                key={event._id}
+                                event={event}
+                            />
+                        ))}
+                    </div>
+                )}
+            </section>
+        </div>
     );
 };
 

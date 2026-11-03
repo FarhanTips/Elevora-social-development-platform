@@ -41,7 +41,7 @@ const NavBar = () => {
     };
 
     return (
-        <header className="sticky top-0 z-50 border-b border-indigo-100/70 bg-linear-to-r from-indigo-50/95 via-white/95 to-violet-100/95 shadow-sm backdrop-blur-xl dark:border-indigo-900/50 dark:bg-linear-to-r dark:from-slate-950 dark:via-indigo-950 dark:to-violet-950">
+        <header className="sticky top-0 z-50 border-b border-indigo-100/70 bg-linear-to-br from-indigo-50 via-white to-violet-100 shadow-sm backdrop-blur-xl dark:border-indigo-900/50 dark:from-slate-600 dark:via-indigo-950 dark:to-violet-950">
             <div className="mx-auto flex h-16 w-11/12 max-w-7xl items-center justify-between gap-3 sm:w-10/12">
 
                 {/* Logo */}
