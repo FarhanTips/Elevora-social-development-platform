@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useSyncExternalStore } from "react";
@@ -14,19 +15,16 @@ const subscribe = (callback: () => void) => {
 };
 
 const getSnapshot = () => document.documentElement.classList.contains("dark");
-const getServerSnapshot = () => false; // default theme is light
+const getServerSnapshot = () => false;
 
 const persistTheme = (dark: boolean) => {
     localStorage.setItem("theme", dark ? "dark" : "light");
-    // Cookie lets the server render the right theme on the next load (no FOUC script)
     document.cookie = `theme=${dark ? "dark" : "light"}; path=/; max-age=31536000; samesite=lax`;
 };
 
 const NavBar = () => {
     const dark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-    // One-time migration: users who picked dark before the cookie existed
-    // (their preference lives only in localStorage) get the class + cookie back.
     useEffect(() => {
         if (localStorage.getItem("theme") === "dark" && !document.documentElement.classList.contains("dark")) {
             document.documentElement.classList.add("dark");
@@ -43,36 +41,59 @@ const NavBar = () => {
     };
 
     return (
-        <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80">
-            <div className="w-10/12 mx-auto h-16 flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-1">
-                    <Image src={logo} alt="Elevora logo" className="h-8 w-auto" />
-                    <span className="text-xl font-semibold tracking-tight">Elevora</span>
-                </Link>
-                <span className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
-                    <CalendarDays className="size-4 shrink-0" />
-                    <Link
-                        href="/upcoming"
-                        className="rounded-md py-2 text-sm font-medium transition-colors "
-                    >
-                        Upcoming Events
-                    </Link>
-                </span>
-                <nav className="flex items-center gap-1 sm:gap-4">
+        <header className="sticky top-0 z-50 border-b border-indigo-100/70 bg-linear-to-r from-indigo-50/95 via-white/95 to-violet-100/95 shadow-sm backdrop-blur-xl dark:border-indigo-900/50 dark:bg-linear-to-r dark:from-slate-950 dark:via-indigo-950 dark:to-violet-950">
+            <div className="mx-auto flex h-16 w-11/12 max-w-7xl items-center justify-between gap-3 sm:w-10/12">
 
+                {/* Logo */}
+                <Link href="/" className="flex shrink-0 items-center gap-1">
+                    <Image
+                        src={logo}
+                        alt="Elevora logo"
+                        className="h-8 w-auto"
+                    />
+                    <span className="text-lg font-bold tracking-tight text-indigo-950 dark:text-white sm:text-xl">
+                        Elevora
+                    </span>
+                </Link>
+
+                {/* Upcoming Events */}
+                <Link
+                    href="/upcoming"
+                    className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-indigo-100/70 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-indigo-900/40 dark:hover:text-indigo-300 sm:flex"
+                >
+                    <CalendarDays className="size-4 shrink-0" />
+                    Upcoming Events
+                </Link>
+
+                {/* Actions */}
+                <nav className="flex shrink-0 items-center gap-1 sm:gap-3">
                     <Button
                         variant="ghost"
                         size="icon"
                         onClick={toggleTheme}
                         aria-label="Toggle theme"
-                        className="rounded-full cursor-pointer"
+                        className="cursor-pointer rounded-full text-indigo-700 hover:bg-indigo-100 dark:text-indigo-200 dark:hover:bg-indigo-900/50"
                     >
-                        {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
+                        {dark ? (
+                            <Sun className="size-4" />
+                        ) : (
+                            <Moon className="size-4" />
+                        )}
                     </Button>
 
-                    <UserInfo></UserInfo>
-
+                    <UserInfo />
                 </nav>
+            </div>
+
+            {/* Mobile Upcoming Events */}
+            <div className="border-t border-indigo-100/60 px-5 py-2 dark:border-indigo-900/40 sm:hidden">
+                <Link
+                    href="/upcoming"
+                    className="flex items-center justify-center gap-2 text-sm font-medium text-indigo-700 transition-colors hover:text-indigo-900 dark:text-indigo-300 dark:hover:text-indigo-100"
+                >
+                    <CalendarDays className="size-4" />
+                    Upcoming Events
+                </Link>
             </div>
         </header>
     );
