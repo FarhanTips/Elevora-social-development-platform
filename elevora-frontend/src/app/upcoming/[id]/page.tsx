@@ -146,7 +146,7 @@ const UpcomingEventDetailsPage = async ({ params, }: UpcomingEventDetailsPagePro
                             {/* Event Information */}
                             <div>
                                 <div className="mb-6">
-                                    <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                                    <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
                                         Event Information
                                     </h2>
                                     <p className="mt-1 text-sm text-slate-500 dark:text-gray-400">
@@ -224,7 +224,7 @@ const UpcomingEventDetailsPage = async ({ params, }: UpcomingEventDetailsPagePro
                                     DON&apos;T MISS OUT
                                 </span>
 
-                                <h2 className="mt-4 text-2xl font-extrabold leading-tight text-slate-900 dark:text-white">
+                                <h2 className="mt-4 text-xl sm:text-2xl font-extrabold leading-tight text-slate-900 dark:text-white">
                                     Be Part of Something Amazing!
                                 </h2>
 
