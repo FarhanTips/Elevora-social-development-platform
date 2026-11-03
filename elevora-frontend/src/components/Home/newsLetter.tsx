@@ -17,7 +17,7 @@ const NewsletterSection = () => {
     };
 
     return (
-        <section className="relative overflow-hidden px-5 py-20 sm:px-10 sm:py-24 lg:px-16">
+        <section className="relative overflow-hidden px-5 py-18 sm:px-10 sm:py-24 lg:px-16">
             <div className="relative mx-auto w-10/12 overflow-hidden rounded-3xl border border-indigo-200/70 bg-linear-to-br from-indigo-50 via-white to-violet-100 p-8 shadow-sm dark:border-indigo-800/50 dark:from-slate-900 dark:via-indigo-950 dark:to-violet-950 sm:p-12 lg:p-16">
 
                 <div className="relative z-10 mx-auto max-w-2xl text-center">

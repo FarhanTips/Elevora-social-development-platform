@@ -5,6 +5,7 @@ import "./globals.css";
 import NavBar from "@/components/shared/navBar";
 import { cn } from "@/lib/utils";
 import { ToastContainer } from "react-toastify";
+import Footer from "@/components/shared/footer";
 
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
@@ -42,6 +43,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <NavBar></NavBar>
         {children}
+        <Footer></Footer>
         <ToastContainer position="top-center" autoClose={3000} />
       </body>
     </html>
