@@ -23,7 +23,7 @@ const Footer = () => {
                                 alt="Elevora logo"
                                 className="h-10 w-auto"
                             />
-                            <span className="text-2xl font-extrabold tracking-tight text-indigo-950 dark:text-white">
+                            <span className="text-2xl font-extrabold tracking-[0.18em] text-indigo-950 dark:text-white">
                                 Elevora
                             </span>
                         </Link>

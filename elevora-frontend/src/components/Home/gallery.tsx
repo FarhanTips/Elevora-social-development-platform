@@ -45,12 +45,12 @@ const galleryImages = [
 const GallerySection = () => {
 
     return (
-        <section className="relative overflow-hidden px-5 py-20 sm:px-10 sm:py-24 lg:px-16">
+        <section className="relative overflow-hidden py-20">
 
-            <div className="relative z-10 mx-auto w-10/12">
+            <div className="relative z-10 ">
 
                 {/* Heading */}
-                <div className="mb-12 text-center max-w-2xl mx-auto">
+                <div className="mb-12 text-center max-w-2xl mx-auto px-10 sm:px-6">
 
                     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white/70 px-4 py-2 text-xs font-semibold tracking-[0.16em] text-indigo-700 shadow-sm dark:border-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 sm:text-sm">
                         <Images className="size-4" /> MOMENTS THAT MATTER
@@ -70,7 +70,7 @@ const GallerySection = () => {
                 </div>
 
                 {/* Gallery Grid */}
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 mx-auto w-10/12">
 
                     {galleryImages.map((image) => (
                         <button

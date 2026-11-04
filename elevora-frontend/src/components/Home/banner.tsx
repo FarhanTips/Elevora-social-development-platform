@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const Banner = () => {
     return (
-        <section className="relative isolate overflow-hidden px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
+        <section className="relative isolate overflow-hidden px-6 py-20">
 
             {/* Soft gradient decorations */}
             <div className="absolute -left-32 -top-32 -z-10 size-80 rounded-full bg-indigo-200/50 dark:bg-indigo-500/20 blur-[100px]" />

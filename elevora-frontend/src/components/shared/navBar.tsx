@@ -51,7 +51,7 @@ const NavBar = () => {
                         alt="Elevora logo"
                         className="h-8 w-auto"
                     />
-                    <span className="text-lg font-bold tracking-tight text-indigo-950 dark:text-white sm:text-xl">
+                    <span className="text-lg font-bold text-indigo-950 dark:text-white sm:text-xl tracking-[0.18em]">
                         Elevora
                     </span>
                 </Link>
