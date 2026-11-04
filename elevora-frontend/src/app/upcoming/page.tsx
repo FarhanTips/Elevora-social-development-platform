@@ -1,7 +1,6 @@
-import EventCard from "@/components/eventCard";
+
 import { EventType } from "@/lib/types/evenType";
-
-
+import UpcomingEventsBrowser from "./upcomingEventsBrowser";
 
 const UpcomingEventsPage = async () => {
 
@@ -15,11 +14,7 @@ const UpcomingEventsPage = async () => {
 
     return (
         <div className="bg-linear-to-tl from-indigo-50 via-white to-violet-100 dark:from-slate-950 dark:via-indigo-950 dark:to-violet-950">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto my-15">
-                {sortedEvents.map((event) => (
-                    <EventCard key={event._id} event={event} card={event._id} />
-                ))}
-            </div>
+            <UpcomingEventsBrowser events={sortedEvents} />
         </div>
     );
 };
