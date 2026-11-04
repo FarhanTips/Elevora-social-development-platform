@@ -10,18 +10,19 @@ From winter clothing distributions to environmental cleanups, plantation drives,
 
 ## 🌐 Live Application
 
-**Live Website:** [Add your live website URL](YOUR_LIVE_SITE_URL)
+- **Frontend:** [https://your-frontend-url.vercel.app](https://elevora-frontend-psi.vercel.app/)
+- **Backend API:** [https://your-backend-url.vercel.app](https://elevora-backend.vercel.app/)
 
 ---
 
 ## ✨ Key Features
 
 - **User Authentication:** Secure email and password authentication with Google social login using Better Auth.
-- **Create Events:** Authenticated users can organize social development events by providing event details, dates, locations, and images.
 - **Discover Upcoming Events:** Explore community events dynamically retrieved from MongoDB.
 - **Event Details:** View comprehensive event information before deciding to participate.
+- **Create Events:** Authenticated users can organize social development events by providing event details, dates, locations, and images.
 - **Join Events:** Registered users can join events, with participation records stored in the database.
-- **Joined Events:** View and track events you have joined, organized by event date.
+- **Joined Events:** View and track only the events you have personally joined, organized by event date.
 - **Manage Events:** Update or delete events you have personally created.
 - **Protected Routes:** Private pages and API operations are protected through authentication and JWT validation.
 - **Responsive Interface:** Enjoy a consistent experience across mobile, tablet, and desktop devices.
@@ -53,8 +54,7 @@ From winter clothing distributions to environmental cleanups, plantation drives,
 - MongoDB
 
 ### Deployment
-- Vercel — Frontend
-- Render — Backend (if applicable)
+- Vercel — Frontend & Backend
 
 ---
 
@@ -119,9 +119,17 @@ npm install
 
 ### 2. Configure Environment Variables
 
-Create a `.env.local` file in the frontend project and configure the required environment variables:
+Create a `.env` file in the frontend project and configure the required environment variables:
 
 ```env
+BETTER_AUTH_SECRET=your_better_auth_secret
+BETTER_AUTH_URL=YOUR_FRONTEND_URL
+
+MONGODB_URL=your_mongodb_connection_string
+
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
 NEXT_PUBLIC_API_URL=YOUR_BACKEND_API_URL
 ```
 
@@ -140,7 +148,7 @@ Configure the remaining Better Auth and authentication-related environment varia
 ### 3. Run the Backend
 
 ```bash
-npm run dev
+nodemon index.js
 ```
 
 ### 4. Run the Frontend
@@ -161,8 +169,8 @@ http://localhost:3000
 
 | Repository | Link |
 |---|---|
-| Client Repository | [Frontend GitHub Repository](YOUR_CLIENT_REPOSITORY_URL) |
-| Server Repository | [Backend GitHub Repository](YOUR_SERVER_REPOSITORY_URL) |
+| Client Repository | [Frontend GitHub Repository](https://github.com/FarhanTips/Elevora-social-development-platform/tree/main/elevora-frontend) |
+| Server Repository | [Backend GitHub Repository](https://github.com/FarhanTips/Elevora-social-development-platform/tree/main/elevora-backend) |
 
 ---
 
@@ -194,4 +202,4 @@ Developed with ❤️ and dedication to community development.
 
 **Project Name:** Elevora  
 **Category:** Social Development & Event Management Platform  
-**Built With:** Next.js, TypeScript, Express.js, MongoDB & Better Auth
+**Built With:** Next.js, React, TypeScript, Express.js, MongoDB & Better Auth
