@@ -36,7 +36,7 @@ const UpcomingEventsBrowser = ({ events }: UpcomingEventsBrowserProps) => {
   };
 
   return (
-    <div className="w-10/12 mx-auto my-20">
+    <div className="w-10/12 mx-auto mt-16 mb-25">
       {/* Heading */}
       <div className="mb-14 text-center">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">

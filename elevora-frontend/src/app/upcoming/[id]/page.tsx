@@ -1,3 +1,5 @@
+
+
 import JoinButton from "@/components/joined/joinButton";
 import { EventType } from "@/lib/types/evenType";
 import { CalendarDays, MapPin, Building2, UserRound, ArrowLeft, } from "lucide-react";
