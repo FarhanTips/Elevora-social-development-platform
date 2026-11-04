@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="relative z-10 mx-auto w-11/12 max-w-7xl">
 
                 {/* Main Footer */}
-                <div className="grid grid-cols-1 gap-12 py-16 sm:grid-cols-[auto_auto] sm:justify-between lg:grid-cols-4 lg:gap-10 lg:py-20">
+                <div className="grid grid-cols-1 gap-12 py-14 sm:grid-cols-[auto_auto] sm:justify-between lg:grid-cols-4 lg:gap-10 lg:py-18">
 
                     {/* Brand */}
                     <div>
