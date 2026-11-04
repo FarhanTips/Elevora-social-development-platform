@@ -44,6 +44,7 @@ const UserInfo = () => {
                                     <Button
                                         variant="ghost"
                                         size="icon"
+                                        title={session?.user?.name || "User"}
                                         className="size-10 cursor-pointer rounded-full border border-indigo-200/70 bg-white/70 shadow-sm transition hover:bg-indigo-100 dark:border-indigo-800 dark:bg-slate-800/70 dark:hover:bg-indigo-900/50"
                                     >
                                         <Avatar className="size-9">

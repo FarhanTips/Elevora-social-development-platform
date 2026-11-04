@@ -3,6 +3,7 @@ import { EventType } from "@/lib/types/evenType";
 import { CalendarDays, MapPin, Building2, UserRound, ArrowLeft, } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface UpcomingEventDetailsPageProps {
     params: Promise<{ id: string }>;
@@ -16,24 +17,7 @@ const UpcomingEventDetailsPage = async ({ params, }: UpcomingEventDetailsPagePro
     );
 
     if (!res.ok) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 dark:bg-gray-950">
-                <div className="text-center">
-                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-                        Event Not Found
-                    </h2>
-                    <p className="mt-3 text-slate-500 dark:text-gray-400">
-                        Sorry, we couldn&apos;t find the event you&apos;re looking for.
-                    </p>
-                    <Link
-                        href="/events"
-                        className="inline-block mt-6 rounded-xl bg-indigo-600 px-6 py-3 text-white font-semibold hover:bg-indigo-700 transition"
-                    >
-                        Explore Events
-                    </Link>
-                </div>
-            </div>
-        );
+        notFound();
     }
 
     const event: EventType = await res.json();
