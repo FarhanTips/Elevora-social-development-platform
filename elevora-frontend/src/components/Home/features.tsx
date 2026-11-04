@@ -51,7 +51,7 @@ const PlatformFeatures = () => {
                         </span>
                     </h2>
 
-                    <p className="mt-5 text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">
+                    <p className="mt-5 leading-7 text-slate-600 dark:text-slate-300 text-sm sm:text-base">
                         Everything you need to discover opportunities, connect
                         with people, and create meaningful change in your community.
                     </p>

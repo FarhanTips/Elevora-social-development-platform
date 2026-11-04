@@ -3,7 +3,9 @@ import React from 'react';
 import EventCard from '../eventCard';
 
 const RecentUpcomingEvents = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recent-events`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recent-events`,{
+        cache: "no-store"
+    });
     const sixEvents: EventType[] = await res.json();
     return (
         <div className='my-12 md:my-16'>

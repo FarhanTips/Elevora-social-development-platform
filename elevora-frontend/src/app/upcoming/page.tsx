@@ -4,7 +4,9 @@ import UpcomingEventsBrowser from "./upcomingEventsBrowser";
 
 const UpcomingEventsPage = async () => {
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`,{
+        cache: "no-store"
+    });
     const events: EventType[] = await res.json();
 
     const today = new Date().toISOString().split("T")[0];
