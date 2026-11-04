@@ -10,8 +10,8 @@ From winter clothing distributions to environmental cleanups, plantation drives,
 
 ## 🌐 Live Application
 
-- **Frontend:** [https://your-frontend-url.vercel.app](https://elevora-frontend-psi.vercel.app/)
-- **Backend API:** [https://your-backend-url.vercel.app](https://elevora-backend.vercel.app/)
+- **Frontend:** [elevora_fronend](https://elevora-frontend-psi.vercel.app/)
+- **Backend API:** [elevora_backend](https://elevora-backend.vercel.app/)
 
 ---
 
